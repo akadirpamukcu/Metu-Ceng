@@ -67,7 +67,7 @@ def train(model, optimizer, train_dataloader, valid_dataloader, epochs, device,m
             if(flag):
                 break
 
-        else if(validation_loss < (min_loss - min_delta)):
+        elif(validation_loss < (min_loss - min_delta)):
             min_loss = validation_loss
             count=0
 
