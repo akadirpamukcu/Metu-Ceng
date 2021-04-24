@@ -154,7 +154,7 @@ if __name__ == "__main__":
             print("\n2_layer_Sigmoid model is done..\n")
             #3 layers
             #   RELU
-            print("\n3_layer_RELU model is training..\n"+ "lr: "  , lr , " h_size:", l_size )
+            print("\n3_layer_RELU model is training..\n"+ "lr: "  , lr , " h_size: ", l_size )
             model = ThreeLayerRelu(l_size)
             model = model.to(device)
             optimizer = torch.optim.Adam(model.parameters(), lr=lr)
