@@ -92,17 +92,19 @@ def train(model, optimizer, train_dataloader, valid_dataloader, epochs, device,m
 
 
 if __name__ == "__main__":
-    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    torch.manual_seed(31)
+    cuda = torch.cuda.is_available()
+    device = torch.device('cuda' if cuda else 'cpu')
+    torch.manual_seed(42)
     transforms = T.Compose([
 		T.ToTensor(),
 		T.Normalize((0.5,),(0.5,)),
 	])
     dataset = MnistDataset('data', 'train', transforms)
     train_dataset, valid_dataset = random_split(dataset, [int(len(dataset)*.8), int(len(dataset)*.2)])
-    train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=8 )
-    valid_dataloader = DataLoader(valid_dataset, batch_size=32, shuffle=True, num_workers=8 )
+    train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=2 )
+    valid_dataloader = DataLoader(valid_dataset, batch_size=32, shuffle=True, num_workers=2 )
     model = fashionModel()
+    model = model.to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=0.0003)
     train(model, optimizer, train_dataloader, valid_dataloader, 10, device, "model1")
     
