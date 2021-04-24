@@ -6,6 +6,10 @@ from torch.utils.data import Dataset, DataLoader, random_split
 from dataset import MnistDataset
 from models import *
 import numpy as np
+
+best_accuracy = 0
+
+
 class fashionModel(nn.Module): # 1 layer simple
     def __init__(self):
         super(fashionModel,self).__init__()
@@ -64,7 +68,7 @@ def train(model, optimizer, train_dataloader, valid_dataloader, epochs, device,m
             count+=1
             flag = True if (count > 5) else False
             if(flag):
-                print( "EARLY STOP YEAH")
+                print("EARLY STOP")
                 break
 
         elif(validation_loss < (min_loss - min_delta)):
@@ -73,6 +77,8 @@ def train(model, optimizer, train_dataloader, valid_dataloader, epochs, device,m
 
     torch.save(model.state_dict(), model_name + "_acc:" + str((100 * correct_num) / (total_num + 1)) )    
     print("saved model name is:    ", model_name + "_acc:" + str( (100 * correct_num) / (total_num + 1) ))
+    accuracy = (100 * correct_num) / (total_num + 1)
+    best_accuracy = accuracy if (accuracy>best_accuracy) else accuracy
     print('Percent correct: %.5f %%' % ((100 * correct_num) / (total_num + 1)))
     print("AVG LOSSES ARE:::")
     print("avg training losess:")
@@ -81,13 +87,6 @@ def train(model, optimizer, train_dataloader, valid_dataloader, epochs, device,m
     print("avg validation losess:")
     for i in avg_validation_losses:
         print(i)
-
-
-
-
-
-
-
         
 
 
@@ -99,70 +98,74 @@ if __name__ == "__main__":
 		T.ToTensor(),
 		T.Normalize((0.5,),(0.5,)),
 	])
-    learning_rates = [0.1, 0.03, 0.01, 0.003, 0.001, 0.0003, 0.0001, 0.00003, 0.00001]
+    learning_rates = [0.01, 0.003, 0.001, 0.0003, 0.0001, 0.00003]
+    hidden_layer_sizes = [256,512,1024]
     dataset = MnistDataset('data', 'train', transforms)
     train_dataset, valid_dataset = random_split(dataset, [int(len(dataset)*.8), int(len(dataset)*.2)])
-    train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=2 )
-    valid_dataloader = DataLoader(valid_dataset, batch_size=32, shuffle=True, num_workers=2 )
+    train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=4 )
+    valid_dataloader = DataLoader(valid_dataset, batch_size=32, shuffle=True, num_workers=4 )
     epoch = 20
-    for lr in learning_rates:
+    for l_r in learning_rates:
         #1 layer model
         print("\nOne layer model is training..\n")
         model = OneLayer()
         model = model.to(device)
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-        model_name = "1_layer_lr: "+ str(lr) + "_"
+        optimizer = torch.optim.Adam(model.parameters(), lr=l_r)
+        model_name = "1_layer_lr: "+ str(l_r) + "_"
         train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
         print("\nOne layer model is done..\n")
-        #2 layers
-        #   RELU
-        print("\n2_layer_RELU model is training..\n")
-        model = TwoLayerRelu()
-        model = model.to(device)
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-        model_name = "2_layer_RELU_lr: "+ str(lr) + "_"
-        train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
-        print("\n2_layer_RELU model is done..\n")
-        #  Tanh
-        print("\n2_layer_tanh model is training..\n")
-        model = TwoLayerTanh()
-        model = model.to(device)
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-        model_name = "2_layer_Tanh_lr: "+ str(lr) + "_"
-        train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
-        print("\n2_layer_Tanh model is done..\n")
-        #  Sigmoid
-        print("\n2_layer_Sigmoid model is training..\n")
-        model = TwoLayerTanh()
-        model = model.to(device)
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-        model_name = "2_layer_Sigmoid_lr: "+ str(lr) + "_"
-        train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
-        print("\n2_layer_Sigmoid model is done..\n")
-        #3 layers
-        #   RELU
-        print("\n3_layer_RELU model is training..\n")
-        model = ThreeLayerRelu()
-        model = model.to(device)
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-        model_name = "3_layer_RELU_lr: "+ str(lr) + "_"
-        train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
-        print("\n3_layer_RELU model is done..\n")
-        #  Tanh
-        print("\n3_layer_tanh model is training..\n")
-        model = ThreeLayerTanh()
-        model = model.to(device)
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-        model_name = "3_layer_Tanh_lr: "+ str(lr) + "_"
-        train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
-        print("\n3_layer_Tanh model is done..\n")
-        #  Sigmoid
-        print("\n3_layer_Sigmoid model is training..\n")
-        model = ThreeLayerTanh()
-        model = model.to(device)
-        optimizer = torch.optim.Adam(model.parameters(), lr=lr)
-        model_name = "3_layer_Sigmoid_lr: "+ str(lr) + "_"
-        train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
-        print("\n3_layer_Sigmoid model is done..\n")
+
+    for lr in learning_rates:
+        for l_size in hidden_layer_sizes:
+            #2 layers
+            #   RELU
+            print("\n2_layer_RELU model is training..\n"+ "lr: " + lr +  " h_size:", l_size )
+            model = TwoLayerRelu(l_size)
+            model = model.to(device)
+            optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+            model_name = "2_layer_RELU_lr: "+ str(lr) + "_" + "h_size: " + str(l_size) 
+            train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
+            print("\n2_layer_RELU model is done..\n"+ "lr: "  + lr + " h_size:", l_size )
+            #  Tanh
+            print("\n2_layer_tanh model is training..\n"+ "lr: "  + lr + " h_size:", l_size )
+            model = TwoLayerTanh(l_size)
+            model = model.to(device)
+            optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+            model_name = "2_layer_Tanh_lr: "+ str(lr) + "_" + "h_size: " + str(l_size) 
+            train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
+            print("\n2_layer_Tanh model is done..\n")
+            #  Sigmoid
+            print("\n2_layer_Sigmoid model is training..\n"+ "lr: "  + lr + " h_size:", l_size )
+            model = TwoLayerTanh(l_size)
+            model = model.to(device)
+            optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+            model_name = "2_layer_Sigmoid_lr: "+ str(lr) + "_" + "h_size: " + str(l_size) 
+            train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
+            print("\n2_layer_Sigmoid model is done..\n")
+            #3 layers
+            #   RELU
+            print("\n3_layer_RELU model is training..\n"+ "lr: "  + lr + " h_size:", l_size )
+            model = ThreeLayerRelu(l_size)
+            model = model.to(device)
+            optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+            model_name = "3_layer_RELU_lr: "+ str(lr) + "_" + "h_size: " + str(l_size) 
+            train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
+            print("\n3_layer_RELU model is done..\n")
+            #  Tanh
+            print("\n3_layer_tanh model is training..\n" + "lr: "  + lr + " h_size:", l_size )
+            model = ThreeLayerTanh(l_size)
+            model = model.to(device)
+            optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+            model_name = "3_layer_Tanh_lr: "+ str(lr) + "_" + "h_size: " + str(l_size) 
+            train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
+            print("\n3_layer_Tanh model is done..\n")
+            #  Sigmoid
+            print("\n3_layer_Sigmoid model is training..\n"+ "lr: "  + lr + " h_size:", l_size )
+            model = ThreeLayerTanh(l_size)
+            model = model.to(device)
+            optimizer = torch.optim.Adam(model.parameters(), lr=lr)
+            model_name = "3_layer_Sigmoid_lr: "+ str(lr) + "_" + "h_size: " + str(l_size) 
+            train(model, optimizer, train_dataloader, valid_dataloader, epoch, device, model_name)
+            print("\n3_layer_Sigmoid model is done..\n"+ "lr: "  + lr + " h_size:", l_size )
 
     
