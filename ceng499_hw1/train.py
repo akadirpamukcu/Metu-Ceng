@@ -65,6 +65,7 @@ def train(model, optimizer, train_dataloader, valid_dataloader, epochs, device,m
             count+=1
             flag = true if (count > 5) else false
             if(flag):
+                print( "EARLY STOP YEAH")
                 break
 
         elif(validation_loss < (min_loss - min_delta)):
@@ -98,7 +99,7 @@ if __name__ == "__main__":
 		T.Normalize((0.5,),(0.5,)),
 	])
     dataset = MnistDataset('data', 'train', transforms)
-    train_dataset, valid_dataset = random_split(train_dataset, [int(len(dataset)*.8), int(len(dataset)*.2)])
+    train_dataset, valid_dataset = random_split(dataset, [int(len(dataset)*.8), int(len(dataset)*.2)])
     train_dataloader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=8 )
     valid_dataloader = DataLoader(valid_dataset, batch_size=32, shuffle=True, num_workers=8 )
     model = fashionModel()
