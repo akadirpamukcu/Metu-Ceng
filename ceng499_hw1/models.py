@@ -15,7 +15,7 @@ class OneLayer(nn.Module):
         x = x.view(x.size(0), -1)
         x  = self.fc(x)
         x = torch.log_softmax(x,dim=1)
-        exit()
+        return x
 
 class TwoLayerRelu(nn.Module): # 1 layer simple
     def __init__(self):
