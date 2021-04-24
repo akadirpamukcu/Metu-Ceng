@@ -92,7 +92,7 @@ def train(model, optimizer, train_dataloader, valid_dataloader, epochs, device,m
 
 
 if __name__ == "__main__":
-    device = torch.device('cuda' if torch.cuda.is_available else 'cpu')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     torch.manual_seed(31)
     transforms = T.Compose([
 		T.ToTensor(),
