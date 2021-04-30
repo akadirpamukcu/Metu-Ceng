@@ -42,7 +42,7 @@ class TwoLayerTanh(nn.Module): # 1 layer simple
     def forward(self,x):
         x = torch.flatten(x,1)
         x  = self.fc1(x)
-        x = F.tanh(x)
+        x = torch.tanh(x)
         x = self.fc2(x)
         x = torch.log_softmax(x,dim=1)
         return x
@@ -89,9 +89,9 @@ class ThreeLayerTanh(nn.Module): # 1 layer simple
     def forward(self,x):
         x = torch.flatten(x,1)
         x  = self.fc1(x)
-        x = F.tanh(x)
+        x = torch.tanh(x)
         x = self.fc2(x)
-        x = F.tanh(x)
+        x = torch.tanh(x)
         x = self.fc3(x)
         x = torch.log_softmax(x,dim=1)
         return x

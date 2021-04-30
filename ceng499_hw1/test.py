@@ -35,15 +35,17 @@ if __name__ == "__main__":
 		T.ToTensor(),
 		T.Normalize((0.5,),(0.5,)),
 	])
+    device = torch.device('cuda')
     ls = []
-    i=0
+    torch.manual_seed(42)
     dataset = TestDataset('data', 'test', transforms)
-    dataloader = DataLoader(dataset, batch_size=32, shuffle=True, num_workers=8)
-    model = OneLayer()
-    model.load_state_dict(torch.load( "1_layer_lr: 0.01_acc:18.0"   ))
+    dataloader = DataLoader(dataset, batch_size=64, shuffle=False, num_workers=2)
+    model = ThreeLayerRelu(1024)
+    model.to(device)
+    model.load_state_dict(torch.load( "/home/kadir/Documents/Metu-Ceng/ceng499_hw1/bestacc:55.0"   ))
     model.eval()
     lines=[]
-    device = torch.device("cpu")
+
     data_path = 'data'
     with torch.no_grad():
         for image in dataloader:
@@ -56,5 +58,5 @@ if __name__ == "__main__":
     with open("data/labels.txt", 'r') as fx:
             for line in fx:
                 lines.append(line.split("\n")[0])
-    for i in range(len(dataset)):
-        print(lines[i]+ " " +str(ls[i]))
+    for j in range(len(dataset)):
+        print(lines[j]+ " " +str(ls[j]))
