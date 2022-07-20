@@ -1,0 +1,149 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+
+
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+
+\begin{document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name :  Abdulkadir Pamukçu\\
+Id Number :  2237774
+
+% Write your answers below the section tags
+\section*{Answer 1}
+
+\subsection*{a)}
+i) \text{By definition union of sets; \{x $\mid$ (x $\in$ B $\lor$ x $\in$ C)\} = \{x $\mid$ x $\in$ (B $\cup$ C)\}}\\
+\text{By definition intersection; \{x $\mid$ x $\in$ A $\land$ x $\in$ (B $\cup$ C)\} = \{x $\mid$ x $\in$ A $\cap$ (B $\cup$ C)\}}\\
+\text{Therefore; D = A $\cap$ (B $\cup$ C)} \\
+\\
+
+ii)\\
+\text{By definition intersection; \{x $\mid$ (x $\in$ A $\land$ x $\in$ B)\} = \{x $\mid$ x $\in$ (A $\cap$ B)\}}\\
+\text{By definition union of sets; \{x $\mid$ x $\in$  (A $\cap$ B) $\lor$ x $\in$ C\} = \{x $\mid$ x $\in$ (A $\cap$ B) $\cup$ C\}}\\
+\text{Therefore; E = (A $\cap$ B) $\cup$ C}\\
+
+iii)\\
+\text{ \{x $\mid$ x $\in$ A $\land$ (x $\in$ B $\rightarrow$ x $\in$ C) \}}\\
+\text{ =  \{x $\mid$ x $\in$ A $\land$ ( $\neg$(x $\in$ B) $\lor$ x $\in$ C) \} by implication for propositions}\\
+\text{ =  \{x $\mid$ x $\in$ A $\land$ ( x $\notin$ B $\lor$ x $\in$ C) \} by definition of negation of propositions}\\
+\text{ =  \{x $\mid$ (x $\in$ A $\land$  x $\notin$ B) $\lor$ (x $\in$ A $\land$ x $\in$ C) \} by distribution of conjuction over disjunction }\\
+\text{ =  \{x $\mid$ x $\in$ (( A $\cap$ $\bar{B}$) $\lor$ ( A $\cap$  C)) \} by definition of intersection}\\
+\text{ =  \{x $\mid$ x $\in$ (( A $\cap$ $\bar{B}$) $\cup$ ( A $\cap$  C)) \} by definition of union of sets}\\
+\text{Therefore; F = ( A $\cap$ $\bar{B}$) $\cup$ ( A $\cap$  C)}
+
+\subsection*{b)}
+
+i)
+\text{let A = \{1,2\} , B = \{3\} , C = \{x,y\}}
+\text{(AxB)xC = \{ ((1,3),x), ((1,3),y), ((2,3),x), ((2,3),y)\}}\\
+\text{Ax(BxC) = \{ ((1,x),3), ((1,y),3), ((2,x),3), ((2,y),3)\}}\\
+\text{In this example we can clearly see that Ax(BxC) $\neq$ (AxB)xC .}\\
+\text{Therefore by this we can disprove this propositions}\\
+\\
+
+ii)\\
+\text{ (A $\cap$ B) $\cap$ C  = \{x $\mid$ (x $\in$ A $\land$ x $\in$ B) $\land$ x $\in$ C\}  by definition of intersection}\\
+\text{= \{x $\mid$ x $\in$ A $\land$ (x $\in$ B $\land$ x $\in$ C)\}  by associative law for propositions}\\
+\text{= A $\cap$ (B $\cap$ C)  by definition of intersection}\\
+\\
+\text{ A $\cap$ (B $\cap$ C)  = \{x $\mid$ x $\in$ A $\land$ (x $\in$ B $\land$ x $\in$ C)\}  by definition of intersection}\\
+\text{= \{x $\mid$ (x $\in$ A $\land$ x $\in$ B) $\land$ x $\in$ C\}  by associative law for propositions}\\
+\text{= (A $\cap$ B) $\cap$ C  by definition of intersection}\\
+\\
+ \text{ ((A $\cap$ B) $\cap$ C) $\subseteq$ (A $\cap$ (B $\cap$ C)) and (A $\cap$ (B $\cap$ C)) $\subseteq$ ((A $\cap$ B) $\cap$ C) }\\
+ Therefore we can approve this proposition
+ 
+iii)\\
+\begin{displaymath}
+\begin{array}{|c|c|c|c|c|c|c|c|}
+ \hline
+
+ \hline
+A & B & C & A \oplus B & B \oplus C &  (A \oplus B) \oplus C &  A \oplus (B \oplus C)\\
+ \hline
+ 1   & 1  & 1 & 0 & 0 & 1 & 1 \\
+ \hline
+ 1   & 1  & 0 & 0 & 1 & 0 & 0 \\
+ \hline
+ 1   & 0  & 1&  1 & 1 & 0 & 0 \\
+ \hline
+ 1   &0  & 0 & 1 & 0 & 1 &1 \\
+ \hline
+  0   & 1  & 1 &  1 & 0 & 0 &0 \\
+ \hline
+  0   & 1  & 0 & 1 & 1 & 1&1 \\
+ \hline
+ 0   & 0  & 1 &  0 & 1 & 1 & 1\\
+ \hline
+ 0   & 0  & 0 &  0 & 0 & 0 & 0 \\
+ \hline
+\end{array}
+\end{displaymath}
+\\
+\text{This table has seven rows.}\\
+Because the columns for A $\oplus$ (B $\oplus$ C) and (A $\oplus$ B) $\oplus$ C are the same, the identity is valid.
+
+\section*{Answer 2}
+\subsection*{a)}
+Assuming that f is an injective function, every element of $A_0$ have unique image at codomain. \\
+This means every f($A_0$) has a preimage at domain that equals to their values at $A_0$. \\ By this we can say that $A_0$ $\subseteq$ $f^{-1}$(f($A_0$))
+\subsection*{b)}
+Assuming that f is an surjective function means that every element of $B_0$ has a preimage at the domain.So, $f^{-1}$($B_0$) has a value at domain. And also according to the given definition of $f^{-1}$ , this approach is valid and reversible. We can say from all this that every element of $B_0$ bring f($f^{-1}$($B_0$))  equal their values at $B_0$. This tells us f($f^{-1}$($B_0$)) $\subseteq$ $B_0$
+
+
+
+\section*{Answer 3}
+
+\textbf{(i)$\rightarrow$(ii)}\\
+If A is countable it is a finite or infinite set.Either way it has same cardinality of an another countable set such as some subset of $Z^+$ . Having same cardinality as some subset of $Z^+$ allows A to become an image of every element of $Z^+$ . By this we can see that the function f:  $Z^+$  $\rightarrow$ A is a surjective function.
+\textbf{(ii)$\rightarrow$(iii)}\\
+Since there is a surjective function f:  $Z^+$  $\rightarrow$ A is exist, we can say that cardinality of $Z^+$ is greater than A. Since every element in A is an image of some elements in $Z^+$ . By showing this we can tell that there exist an injective function f: A $\rightarrow$ $Z^+$. \\
+\textbf{(ii)$\rightarrow$(iii)}\\
+Since there is a injective function f: A $\rightarrow$ $Z^+$ is exist, every element in A has an image at $Z^+$ . By this we can say $|A|$ $\leq$ $Z^+$ . So A have same cardinality of some subset $Z^+$. By knowing this and $Z^+$ is a countable set, we can say that A is a countable set.
+
+
+\section*{Answer 4}
+\subsection*{a)}
+Since every finite binary string has a correspondence value at $Z^+$, we can create a bijective relationship between every set of finite binary strings with $Z^+$, so any finite binary strings set has same cardinality of some subset of $Z^+$. Hence the set of finite binary strings is countable.
+\subsection*{b)}
+
+Let A the set of infinite binary strings and assume that there is bijection function f: $Z^+$ $\rightarrow$ A exists. So f must be surjective too. Let's assume that f(i) = $d_i$ for i $\in$ $Z^+$. So A = \{ $d_1$,$d_2$,...$d_n$,..\}. By taking the infinite binary string d as: $(d_n)$ = ($(d_n)^n$ + 1) at mod 2. But for each n, d $\neq$ $d^n$ since $d_n$ $\neq$ $(d_n)^n$. This cause a contradiction so f can not be surjection.A surjective relationship between $Z^+$ and A can't exist. By this we can say that set of infinite binary string is uncountable.
+
+
+\section*{Answer 5}
+\subsection*{a)}
+log(n!) = log(n x (n-1) x (n-2) x .... x 3 x 2 x 1)\\
+log(n!) = log(n) + log(n-1) + log(n-2) + .... + log3 + log2 + log1\\
+when n$<$1; log(n) + log(n-1) + log(n-2) + .... + log2 + log1 $<$ nlogn \\
+Hence, log(n!) = $\Theta$(nlog n) when n$<$1
+
+\subsection*{b)}
+Let choose a g(n) = n!/$2^n$\\
+\\
+g(n+1)/g(n) = ((n+1) x (n!)/$2^n$ x 2)/(n!/$2^n$)\\
+= n+1/2\\
+\\
+(n+1)/2 $>$ 1  $\forall$n $>$1\\
+\\
+By showing this we can clearly say that n! grows faster than $2^n$
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+
+
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+%misc libraries goes here
+
+
+
+\begin{document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name :  Abdulkadir Pamukçu\\
+Id Number :  2237774\\
+
+% Write your answers below the section tags
+\section*{Answer 1}
+
+Fermat's little theorem says that if p is a prime and a is an integer which not divisible by p, then: \\
+\\
+a$^{p-1}$ $\equiv$ 1 (mod p).\\
+\\
+In this question we can conclude that y is a some multiple of (p-1) by this theorem since p is a prime and x is a positive integer which is not divisible by p. Also, since we been told that y is the smallest positive integer, we can say that y is equal to (p-1)\\
+\\
+Hence; \\
+y $|$ (p-1) is a true statement.
+
+\section*{Answer 2}
+
+If we assume that 169 $|$ (2n$^2$ + 10n -7). we know that 169 = 13$^2$ so we need to check for the (2n$^2$ + 10n -7) divisibility to 13 twice. And by this we'll disprove that since it doesn't hold.
+
+\section*{Answer 3}
+
+We are given that a $\equiv$ b (mod m) and b $\equiv$ b (mod n), so we can extract that: \\
+\\
+\textbf{a-b $\equiv$ 0 (mod m)} and \textbf{a-b $\equiv$ 0 (mod n)} means that a-b is some multiple of both a and b \\
+So, a-b = m x q q $\in$ Z$^+$ so m x q $\equiv$ 0 (mod n) we can say that n $|$ m x q, since gcd(m,n) $\equiv$ 1 is given; m can not be equal to some multiple of n therefore q should. Let  q = k x n k $\in$ Z$^+$ \\
+\\
+From that, a-b = m x n x k\\
+\\
+By this equation we can clearly see that a-b is a some multiple of m x n\\
+\\
+\textbf{Hence: a $\equiv$ b  (mod m x n)}
+
+\section*{Answer 4}
+
+Let call our given equation F() to prove it with mathematical induction we first need the check for F(1) after that we will assume F(n,k) and solve for n+1. If F(n+1,k) is also comes out true we can say it is proven for every value of n for F.
+
+\[F(1,k) = \sum_{j=1}^{1}j(j+1)(j+2)..........(j+k-1)=(1)(2)(3).......(k)=\frac{(1)(2)(3).......(k+1)}{k+1}\]\\
+\\
+F(1,k)=k! both sides of the equation is equal to k! so, for n=1 it is true.\\
+\\
+
+Now, lets assume F(n,k):\\
+\\
+\[F(n,k) = \sum_{j=1}^{n}j(j+1)(j+2)..........(j+k-1)=\frac{n(n+1)(n+2).......(n+k)}{k+1}\]\\
+\\
+For an arbitrary number n $\in$ Z$^+$ and k $\in$ Z$^+$\\
+
+Now we'll show that F(n+1,k) holds;\\
+\\
+\[F(n+1,k) = \sum_{j=1}^{n+1}j(j+1)(j+2)..........(j+k-1)\]\\
+\\
+Actually, it is equal to this:\\
+
+\[F(n+1,k) = \sum_{j=1}^{n}j(j+1)(j+2)..........(j+k-1)\ + \sum_{j=n}^{n+1}j(j+1)(j+2)..........(j+k-1)\]\\
+\\Becomes;
+\[F(n+1,k) = \frac{n(n+1)(n+2).......(n+k)}{k+1} + n(n+1)(n+2).......(n+k) \]\\
+\\
+\\With some algebraic operations;
+\[F(n+1,k)=((n+1)(n+2)......(n+k))(\frac{n}{k+1}+1)\]\\
+Finally:\\
+\[F(n+1,k) = \frac{n(n+1)(n+2).......(n+k)}{k+1}\]\\
+\\
+
+F(n+1,k) is satisfied from this.\\
+\\
+Hence, we proved that all positive integers n and k are satisfied for this equations, and it is proven by mathematical induction.
+
+
+
+
+
+
+
+\section*{Answer 5}
+
+We are already given that H$_0$, H$_1$, H$_2$ and they are all less or equal than 7$^n$ .\\
+\\
+For n=3 H$_3$ = 5H$_2$ + 5H$_1$ + 63H$_0$ = 103 $\leq$ 7$^3$ = 343\\
+\\
+To prove it by strong induction we assume  H$_4$,  H$_5$,  H$_6$....  H$_{k-1}$\\
+By this assumption we know:\\
+\\
+H$_{k-1}$ $\leq$ 7$^{k-1}$ and H$_{k-2}$ $\leq$ 7$^{k-2}$ and H$_{k-3}$ $\leq$ 7$^{k-3}$\\
+\\
+So we need to check H$_{k}$:\\
+\\
+H$_{k}$ =  5H$_{k-1}$ + 5H$_{k-2}$ + 63H$_{k-3}$ $\leq$ 7$^{k}$\\
+\\ Since we know what their less or equal of,\\
+\\
+7$^{k-2}$ 5.7$^{k-1}$ + 5.7$^{k-2}$ + 63.7$^{k-3}$ $\leq$ 7$^{k}$ \\
+\\ if we take 7$^{k-3}$ parenthesis\\
+7$^{k-3}$(7$^3$) $\leq$ 7$^{k}$\\
+7$^3$ $\leq$ 7$^3$\\
+\\ So it checks. By this we show the H$_{k}$ is also true for our assumptions.\\
+\\
+Hence we proven that H$_{n}$ $\leq$ 7$^{n}$ for all n $\geq$ 0 by strong induction.
+
+
+
+ 
+
+
+
+\end{document}

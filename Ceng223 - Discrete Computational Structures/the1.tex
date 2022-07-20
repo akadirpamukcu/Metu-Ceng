@@ -1,0 +1,160 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{amsmath}
+
+
+\usepackage[hmargin=3cm,vmargin=6.0cm]{geometry}
+%\topmargin=0cm
+\topmargin=-2cm
+\addtolength{\textheight}{6.5cm}
+\addtolength{\textwidth}{2.0cm}
+%\setlength{\leftmargin}{-5cm}
+\setlength{\oddsidemargin}{0.0cm}
+\setlength{\evensidemargin}{0.0cm}
+
+%misc libraries goes here
+\usepackage{fitch}
+
+
+\begin{document}
+
+\section*{Student Information } 
+%Write your full name and id number between the colon and newline
+%Put one empty space character after colon and before newline
+Full Name :  Abdulkadir Pamukçu
+Id Number :  2237774
+
+% Write your answers below the section tags
+\section*{Answer 1}
+\subsection*{a)}
+
+\begin{tabular}{ |p{1cm}|p{1cm}|p{1cm}|p{2cm}|p{2cm}| }
+ \hline
+
+ \hline
+ p & q & $\neg$ p & (q $\rightarrow$ $\neg$ p) & ( p $\leftrightarrow$ q)\\
+ \hline
+ T   & T    &F&   F & T\\
+ \hline
+T&   F  & F   &T & T\\
+ \hline
+ F &T & T&  T & F\\
+ \hline
+ F    &F & T&  T & T\\
+
+\hline
+\end{tabular}
+
+\subsection*{b)}
+
+\begin{displaymath}
+\begin{array}{|c|c|c|c|c|c|c|c|c}
+ \hline
+
+ \hline
+p & q & r & p \lor q & p \to r & q \rightarrow r & (p \lor q) \land (p \to r) \land (q \to r) & ((p \lor q) \land (p \to r) \land (q \to r)) \to r\\
+ \hline
+ T   & T  & T &  T & T & T & T & T\\
+ \hline
+ T   & T  &F &  T & F & F & F & T\\
+ \hline
+ T   & F  & T &  T & T & T & T & T\\
+ \hline
+ T   & F  & F &  T & F & T & F & T\\
+ \hline
+  F   & T  & T &  T & T & T & T & T\\
+ \hline
+  F   & T  & F &  T & T & F &F & T\\
+ \hline
+ F   & F  & T &  F & T & T & F& T\\
+ \hline
+ F   & F  &F &  F & T & T & F & T\\
+ \hline
+\end{array}
+\end{displaymath}
+\\
+\text{All possible outcomes turned out to be true according to truth table hence it is a tautology  }
+
+
+\section*{Answer 2}
+
+\textbf{$\neg$p $\rightarrow$ ( q $\rightarrow$ r )}
+\\
+\\
+\text{$\neg$p $\rightarrow$ ( q $\rightarrow$ r ) $\equiv$ p $\lor$ ( q $\rightarrow$ r )  // from table 7 - second row}
+\\
+\\
+\text{p $\lor$ ( q $\rightarrow$ r ) $\equiv$ p $\lor$ ( $\neg$q $\lor$ r )    // from table 7 - second row}
+\\
+\\
+\textbf{q $\rightarrow$ ( p $\lor$ r )}
+\\
+\\
+\text{q $\rightarrow$ ( p $\lor$ r ) $\equiv$ $\neg$q $\lor$  ( p $\lor$ r )   // from table 7 - second row}
+\\
+\\
+\text{$\neg$q $\lor$  ( p $\lor$ r ) $\equiv$ p $\lor$ ($\neg$q $\lor$ r) // associative law }
+\\
+\\
+\text{$\neg$p $\rightarrow$ ( q $\rightarrow$ r ) $\equiv$ q $\rightarrow$ ( p $\lor$ r ) $\equiv$ p $\lor$ ( $\neg$q $\lor$ r ) They equivalent to same thing,hence equivalent.}
+
+
+\section*{Answer 3}
+
+\subsection*{a) $\forall$x(L(x,Burak))}
+\subsection*{b) $\forall$x(L(Hazal,x))}
+\subsection*{c) $\forall$x$\exists$y(L(x,y))}
+\subsection*{d) $\neg$ $\exists$x$\forall$y(L(x,y))}
+\subsection*{e) $\forall$y$\exists$x(L(x,y))}
+\subsection*{d) $\forall$x(L(Hazal,x))}
+\subsection*{f) $\neg$ $\exists$x$\forall$y(L(x,Burak) $\land$ L(x,Mustafa)}
+\subsection*{g) $\exists$x$\exists$y(L(Ceren,x) $\land$ L(Ceren,y) $\rightarrow$ $\forall$z(z=x $\lor$ z=y $\land$ x=y))}
+\subsection*{h) $\forall$x$\exists$y(L(x,y) $\land$ $\forall$z(L(x,y) $\rightarrow$ (y=z))}
+\subsection*{i) $\neg$ $\exists$x(L(x,x)}
+\subsection*{h) $\forall$x$\exists$y(L(x,y) $\land$ $\forall$z(L(x,y) $\rightarrow$ (y=z))}
+\subsection*{j) $\exists$x$\exists$y(L(x, y) $\land$ (y $\ne$x) $\land$ $\forall$z (L(x, z) $\to$ (y=z)) )}
+
+
+
+\section*{Answer 4}
+\begin{tabular}{ccc}
+1) \text{p \hspace{6cm} premise}
+\\
+2) \text{p$\rightarrow$(r$\rightarrow$ q) \hspace{4.3cm} premise}
+\\
+3) \text{(r$\rightarrow$ s) \hspace{5cm} premise}
+\\
+4) \text{(r$\rightarrow$ q) \hspace{5cm} $\rightarrow$e 1,2}
+\\
+\hline
+5)  \text{$\neg$ q \hspace{4cm} assumption }
+\\
+\hline
+\hline
+6)  \text{r \hspace{4cm} assumption }
+\\
+7)  \text{q \hspace{4.7cm} $\rightarrow$e 4,6 }
+\\
+8)  \text{$\bot$ \hspace{4.7cm} $\neg$e 5,7 }
+\\
+\hline
+\hline
+9)  \text{$\neg$r \hspace{5.3cm} $\neg$i 6,8 }
+\\
+10-) \text{s $\lor$ $\neg$r \hspace{4.6cm} $\lor$i 9 }
+\\
+\hline
+11) \text{$\neg$q $\rightarrow$(s $\lor$ $\neg$r)  \hspace{3.3cm} $\rightarrow$i 5-10 }
+
+
+
+
+\end{tabular}
+\section*{Answer 5}
+
+
+
+
+
+\end{document}
